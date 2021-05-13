@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25)),
                           prefixIcon: Icon(Icons.lock)),
-                      obscureText: true,
+                      obscureText: true, 
                       onSaved: (input) => _password = input,
                     ),
                   ),

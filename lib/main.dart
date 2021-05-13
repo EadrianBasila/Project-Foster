@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
+      theme: ThemeData( visualDensity: VisualDensity.adaptivePlatformDensity,
           primaryColor: Colors.orange, scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
       //home: MyHomePage(title: 'Foster Home Page'),
