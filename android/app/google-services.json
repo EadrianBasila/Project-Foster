@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "608550812664",
+    "project_id": "foster-4502b",
+    "storage_bucket": "foster-4502b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608550812664:android:7a0b3694f1e26a48eb340d",
+        "android_client_info": {
+          "package_name": "com.example.foster_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608550812664-kasdp4h7bp2rduim28ja5cad7t77md80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foster_app",
+            "certificate_hash": "49d70e8535d31871df10468128a22ecfa79d0748"
+          }
+        },
+        {
+          "client_id": "608550812664-64vv08gpe4589lhnsila02rovgn6rmj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7WMix2JReN8Ej9rWmzm1zbJ-LnavZV3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608550812664-64vv08gpe4589lhnsila02rovgn6rmj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
