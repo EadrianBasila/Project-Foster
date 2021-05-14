@@ -65,57 +65,58 @@ class _HomePageState extends State<HomePage> {
                         new AlwaysStoppedAnimation<Color>(Colors.indigoAccent),
                     strokeWidth: 10,
                   )
-                :  
-                Column(
+                : Column(
                     children: <Widget>[
                       SizedBox(height: 10.0),
-                       Row( 
-                      mainAxisAlignment: MainAxisAlignment.start,
-                       children: <Widget>[
-                        Container(
-                            height: 60,
-                            width: 60,
-                            child: Image(image: AssetImage("images/logo-icon.png"),
-                            fit: BoxFit.contain), 
-                          ),
-                         Container(                    
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "FOSTER",
-                              style: TextStyle(
-                                  
-                                  fontSize: 50,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.orange),
-                              textAlign: TextAlign.left,
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              height: 60,
+                              width: 60,
+                              child: Image(
+                                  image: AssetImage("images/logo-icon.png"),
+                                  fit: BoxFit.contain),
                             ),
-                          ),
-                          SizedBox(width: 125),
-                          Container(
-                            alignment: Alignment.topRight,
-                            child: ElevatedButton.icon(
-                              onPressed: signOut,
-                              icon: Icon(Icons.exit_to_app,
-                                color: Colors.white,
-                                size: 24.0,),
-                              label: Text(
-                                'SIGN OUT',
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "FOSTER",
                                 style: TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                    fontSize: 50,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.orange),
+                                textAlign: TextAlign.left,
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.fromLTRB(19, 19, 19, 19),
-                                  primary: Colors.redAccent,
-                                  onPrimary: Colors.white,                                 
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  )),
                             ),
-                          ),
-                         ]
-                       ),
+                            SizedBox(width: 125),
+                            Container(
+                              alignment: Alignment.topRight,
+                              child: ElevatedButton.icon(
+                                onPressed: signOut,
+                                icon: Icon(
+                                  Icons.exit_to_app,
+                                  color: Colors.white,
+                                  size: 24.0,
+                                ),
+                                label: Text(
+                                  'SIGN OUT',
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                    padding:
+                                        EdgeInsets.fromLTRB(19, 19, 19, 19),
+                                    primary: Colors.redAccent,
+                                    onPrimary: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                    )),
+                              ),
+                            ),
+                          ]),
                       SizedBox(height: 10),
                       Container(
                         alignment: Alignment.center,
@@ -123,9 +124,9 @@ class _HomePageState extends State<HomePage> {
                           " Hello ${user.displayName}!",
                           style: TextStyle(
                               fontSize: 35,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                               color: Colors.indigoAccent),
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign.center,
                         ),
                         // child: Text(
                         //   "Hello ${user.displayName} your are logged in as ${user.email}",
@@ -138,12 +139,14 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(height: 10.0),
                       Container(
                         height: 400,
-                        decoration: BoxDecoration(color: Colors.orange,
-                            boxShadow: [BoxShadow(
+                        decoration:
+                            BoxDecoration(color: Colors.orange, boxShadow: [
+                          BoxShadow(
                             color: Colors.grey[300],
                             blurRadius: 15.0,
                             spreadRadius: 10.0,
-                          ),]),                      
+                          ),
+                        ]),
                         child: PageView.builder(
                           controller: PageController(viewportFraction: 0.6),
                           scrollDirection: Axis.horizontal,
@@ -179,7 +182,8 @@ class _HomePageState extends State<HomePage> {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: _index == index ? 30 : 20,
+                                              fontSize:
+                                                  _index == index ? 30 : 20,
                                               fontWeight: _index == index
                                                   ? FontWeight.bold
                                                   : FontWeight.normal,
@@ -192,7 +196,8 @@ class _HomePageState extends State<HomePage> {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.indigoAccent,
-                                              fontSize: _index == index ? 20 : 15,
+                                              fontSize:
+                                                  _index == index ? 20 : 15,
                                               fontWeight: _index == index
                                                   ? FontWeight.bold
                                                   : FontWeight.normal,
@@ -204,7 +209,6 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                       ),
-
                       SizedBox(height: 10.0),
                       Container(
                           alignment: Alignment.center,
@@ -216,7 +220,9 @@ class _HomePageState extends State<HomePage> {
                           )),
                       SizedBox(height: 40.0),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed("Check");
+                        },
                         child: Text(
                           'CHECK YOUR APPLICATION',
                           style: TextStyle(
@@ -235,7 +241,9 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(height: 10.0),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed("Submit");
+                        },
                         child: Text(
                           'SEND YOUR APPLICATION',
                           style: TextStyle(
@@ -252,23 +260,26 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(25.0),
                             )),
                       ),
-                      SizedBox(height: 80.0),
+                      SizedBox(height: 60.0),
                       Container(
                         width: 380,
                         child: Center(
                           child: Text(
                             'This project aims to help the elderly who are struggling with financial and emotional needs. From the application name itself, people that uses the app will be able to foster someone, provide them with basic needs. ',
-                            style: TextStyle(color: Colors.grey, fontSize: 10,),
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                      ), 
-                      SizedBox(height: 5.0),  
+                      ),
+                      SizedBox(height: 5.0),
                       Text(
                         'Project Foster. All Rights Reserved (2021)',
                         style: TextStyle(color: Colors.grey, fontSize: 15),
-                      ),                                                           
-                    ],                    
+                      ),
+                    ],
                   ),
           )),
         ));

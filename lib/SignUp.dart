@@ -108,6 +108,11 @@ class _SignUpState extends State<SignUp> {
                         if (input.isEmpty) {
                           return 'Enter Email';
                         }
+                        if (!RegExp(
+                            r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                        .hasMatch(input)) {
+                      return 'Please enter a valid email adress';
+                    }
                         return null;
                       },
                       decoration: InputDecoration(
