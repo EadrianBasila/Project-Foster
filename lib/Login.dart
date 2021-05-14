@@ -143,6 +143,8 @@ class _LoginState extends State<Login> {
                         padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
                         primary: Colors.orange[700],
                         onPrimary: Colors.white,
+                        //shadowColor: Colors.grey,
+                        elevation: 10,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         )),
@@ -169,6 +171,15 @@ class _LoginState extends State<Login> {
                   )
                 ],
               )),
+          SizedBox(height: 180.0),  
+             Text(
+              'Secured login powered by: Firebase Authentication',
+              style: TextStyle(color: Colors.grey, fontSize: 13),
+            ), 
+            Text(
+              'Project Foster. All Rights Reserved (2021)',
+              style: TextStyle(color: Colors.grey, fontSize: 13),
+            ),     
         ],
       )),
     ));
