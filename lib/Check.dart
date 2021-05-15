@@ -8,25 +8,30 @@ class Check extends StatefulWidget {
 class _CheckState extends State<Check> {
   showAlertDialog(BuildContext context) {
     Widget okButton = TextButton(
-      child: Text("Understood", style: 
-      TextStyle(fontSize: 25,
-      fontWeight: FontWeight.bold,
-      color: Colors.indigoAccent),),
+      child: Text(
+        "Understood",
+        style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: Colors.indigoAccent),
+      ),
       onPressed: () {
         Navigator.of(context).pop();
       },
     );
 
     AlertDialog alert = AlertDialog(
-      title: Text("Reminder", style: 
-      TextStyle(fontSize: 50,
-      fontWeight: FontWeight.bold,
-      color: Colors.orange),),
+      title: Text(
+        "Reminder",
+        style: TextStyle(
+            fontSize: 50, fontWeight: FontWeight.bold, color: Colors.orange),
+      ),
       content: Text(
-          "Foster's Team will contact you thru specified channels: via email and phone call/message, once your application has been approved.",
-          style: TextStyle(fontSize: 15,
-        fontWeight: FontWeight.normal,
-       color: Colors.black),),
+        "Foster's Team will contact you thru specified channels: via email and phone call or text message, once your application has been approved.\n\nThe text above will also change from pending to 'Accepted' or 'Denied.'",
+        style: TextStyle(
+            fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black),
+        textAlign: TextAlign.justify,
+      ),
       actions: [
         okButton,
       ],
@@ -124,6 +129,26 @@ class _CheckState extends State<Check> {
                 ),
                 SizedBox(height: 10.0),
                 Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.yellow[600],
+                          blurRadius: 20.0,
+                          spreadRadius: 10.0,
+                        ),
+                      ]),
+                  child: Text(
+                    'PENDING',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height: 50.0),
+                Container(
                   alignment: Alignment.center,
                   child: ElevatedButton.icon(
                     onPressed: () {
@@ -150,7 +175,7 @@ class _CheckState extends State<Check> {
                         )),
                   ),
                 ),
-                SizedBox(height: 100.0),
+                SizedBox(height: 80.0),
                 Text(
                   'Feel free to contact us at our:',
                   style: TextStyle(

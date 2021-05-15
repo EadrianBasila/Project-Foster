@@ -1,7 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+//import 'package:image_picker_web_redux/image_picker_web_redux.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class Submit extends StatefulWidget {
   @override
@@ -18,6 +22,9 @@ class _SubmitState extends State<Submit> {
   String _userAddress;
   String _userNumber;
   String _userEmail;
+  String _userDescription;
+  PickedFile _imageFile;
+  final ImagePicker _picker = ImagePicker();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -25,6 +32,7 @@ class _SubmitState extends State<Submit> {
     String username = 'zippsgame@gmail.com';
     String password = 'qedqerpxebokpgxh';
 
+    // ignore: deprecated_member_use
     final smtpServer = gmail(username, password);
 
     final message = Message()
@@ -47,27 +55,90 @@ class _SubmitState extends State<Submit> {
   }
 
   Widget _buildImage() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
-      child: TextFormField(
-        validator: (String value) {
-          if (value.isEmpty) {
-            return 'Enter Name';
-          }
-          return null;
-        },
-        decoration: InputDecoration(
-            labelText: 'Name',
-            filled: true,
-            hoverColor: Colors.orange[50],
-            isDense: true,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
-            prefixIcon: Icon(Icons.image_rounded)),
-        onSaved: (String value) {
-          _image = value;
-        },
+    return Center(
+      child: Stack(
+        children: <Widget>[
+          CircleAvatar(
+            radius: 80.0,
+            backgroundImage: _imageFile == null
+                ? AssetImage('images/profile.png')
+                : FileImage(File(_imageFile.path)),
+          ),
+          Positioned(
+            bottom: 20.0,
+            right: 20.0,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: ((builder) => _buildSheet()),
+                );
+              },
+              child: Icon(Icons.camera_alt_rounded,
+                  color: Colors.orange, size: 28.0),
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  Widget _buildSheet() {
+    return Container(
+      height: 100.0,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10), color: Colors.indigoAccent),
+      margin: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20,
+      ),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 10),
+          Text("Choose Profile Image",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white)),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextButton.icon(
+                icon: Icon(Icons.image_rounded, color: Colors.white),
+                onPressed: () {
+                  if (kIsWeb) {
+                    takePhotoWeb(ImageSource.gallery);
+                  } else {
+                    takePhoto(ImageSource.gallery);
+                  }
+                },
+                label: Text('Gallery',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white)),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  void takePhotoWeb(ImageSource source) async {
+    final pickedFile = await ImagePicker().getImage(source: source);
+    setState(() {
+      _imageFile = pickedFile;
+    });
+  }
+
+  void takePhoto(ImageSource source) async {
+    final pickedFile = await _picker.getImage(source: source);
+    setState(() {
+      _imageFile = pickedFile;
+    });
   }
 
   Widget _buildUsername() {
@@ -195,6 +266,33 @@ class _SubmitState extends State<Submit> {
     );
   }
 
+  Widget _buildDescription() {
+    return Container(
+      padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
+      child: TextFormField(
+        keyboardType: TextInputType.multiline,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Enter your profile description';
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+            labelText: 'Profile Description',
+            filled: true,
+            hoverColor: Colors.orange[50],
+            isDense: true,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
+            prefixIcon: Icon(Icons.favorite)),
+        onSaved: (String value) {
+          _userDescription = value;
+        },
+         maxLines: 5,
+         minLines: 1,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -273,12 +371,7 @@ class _SubmitState extends State<Submit> {
                     textAlign: TextAlign.left,
                   ),
                 ),
-                Container(
-                  height: 250,
-                  child: Image(
-                      image: AssetImage("images/homepage.jpg"),
-                      fit: BoxFit.contain),
-                ),
+                SizedBox(height: 20),
                 SizedBox(height: 10.0),
                 _buildImage(),
                 SizedBox(height: 10.0),
@@ -291,6 +384,8 @@ class _SubmitState extends State<Submit> {
                 _buildNumber(),
                 SizedBox(height: 10.0),
                 _buildEmail(),
+                SizedBox(height: 10.0),
+                _buildDescription(),
                 SizedBox(height: 50.0),
                 Container(
                   width: 380,
@@ -299,7 +394,7 @@ class _SubmitState extends State<Submit> {
                       'By submitting your application, you agree to Fosters Terms and Conditions.',
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 15,
+                        fontSize: 10,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -313,7 +408,8 @@ class _SubmitState extends State<Submit> {
                     }
 
                     _formKey.currentState.save();
-                    String _emailBody = ' Applicant Information: \n Applicant Image: {$_image} \n Applicant Name: {$_userName} \n Applicant Age: {$_userAge} \n Applicant Address: {$_userAddress} \n Applicant Number: {$_userNumber} \n Applicant Email: {$_userEmail} ';
+                    String _emailBody =
+                        ' Applicant Information: \n Applicant Image: {$_image} \n Applicant Name: {$_userName} \n Applicant Age: {$_userAge} \n Applicant Address: {$_userAddress} \n Applicant Number: {$_userNumber} \n Applicant Email: {$_userEmail} \n Applicant Description: {$_userDescription} ';
                     print(_emailBody);
 
                     // _launchURL('basilaeadrian@gmail.com',
@@ -327,6 +423,7 @@ class _SubmitState extends State<Submit> {
                     // [---] ''');
 
                     //sendToMail(_emailBody);
+
                     Navigator.of(context).pushReplacementNamed("/");
                   },
                   child: Text(

@@ -34,6 +34,10 @@ dependencies:
   flutter_svg: ^0.22.0
   url_launcher: ^6.0.3
   mailer: ^5.0.0
+  image_picker: ^0.7.5
+  image_picker_for_web: ^2.0.0
+  image_picker_web_redux: any
+
 
 
 dev_dependencies:
@@ -67,6 +71,7 @@ flutter:
     - images/old-8.jpg
     - images/logo-icon.png
     - images/check.jpg
+    - images/profile.png
     - assets/icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
