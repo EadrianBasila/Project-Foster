@@ -86,7 +86,7 @@ class _StartState extends State<Start> {
                   child: Text(
                     'LOGIN',
                     style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 35.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -104,7 +104,7 @@ class _StartState extends State<Start> {
                   child: Text(
                     'REGISTER',
                     style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 35.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -123,7 +123,9 @@ class _StartState extends State<Start> {
               Buttons.Google,
               text: "Sign in with Google", 
               onPressed: googleSignIn,
-            )
+            ),
+
+
           ],
         ),
       ),

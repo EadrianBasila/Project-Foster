@@ -148,7 +148,9 @@ class _SignUpState extends State<SignUp> {
                       onSaved: (input) => _password = input,
                     ),
                   ),
-                  SizedBox(height: 20.0),
+                  SizedBox(height: 50.0),
+                  
+                   SizedBox(height: 5.0),
                   ElevatedButton(
                     onPressed: signUp,
                     child: Text(
@@ -166,11 +168,32 @@ class _SignUpState extends State<SignUp> {
                           borderRadius: BorderRadius.circular(20.0),
                         )),
                   ),
-                  SizedBox(height: 5.0),
-                  Text(
+                  SizedBox(height: 5.0),   Text(
                     'By signing up, You agree to Fosters Terms and Conditions.',
-                    style: TextStyle(color: Colors.grey, fontSize: 10),
-                  ),
+                    style: TextStyle(color: Colors.grey, fontSize: 15),
+                  ),SizedBox(height: 5.0),
+                 Container(
+                    alignment: FractionalOffset.center,
+                    child: new Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Already have an account? ",
+                          style: TextStyle(color: Colors.grey, fontSize: 13),
+                        ),
+                        GestureDetector(
+                          child: Text("Sign in here.",
+                              style: TextStyle(
+                                  color: Colors.indigoAccent, fontSize: 13)),
+                          onTap: (){
+                            _formKey.currentState.save();
+                            Navigator.of(context).pushReplacementNamed("Login");
+                          },
+                        )
+                      ],
+                    )),
+                  
+                
                 ],
               ),
             ),

@@ -162,7 +162,7 @@ class _LoginState extends State<Login> {
           Container(
               alignment: FractionalOffset.center,
               child: new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     "Doesn't have an account yet? ",
@@ -176,9 +176,9 @@ class _LoginState extends State<Login> {
                   )
                 ],
               )),
-          SizedBox(height: 180.0),  
+          SizedBox(height: 150.0),  
              Text(
-              'Secured login powered by: Firebase Authentication',
+              '[Secure Login] Powered by: Firebase Authentication',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ), 
             Text(
